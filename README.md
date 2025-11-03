@@ -40,17 +40,6 @@ Please check [thorium.rocks](https://thorium.rocks)
 - Background interaction mode: press `` ` `` or click "Interact"  
 - Auto-refresh for Sechelt background  
 
-
-## File Structure
-firefox-newtab/
-├── index.html # Main HTML structure
-├── css/
-│ └── style.css # Styling and layouts
-├── js/
-│ ├── script.js # Core logic (search, shortcuts, weather)
-│ └── background.js # Backgrounds and interactivity
-└── README.md # This documentation
-
 ## Installation
 1. Place the project folder in a permanent location.  
 2. Configure Firefox to use the local HTML file as your new tab page.  
