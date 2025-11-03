@@ -1,0 +1,215 @@
+:root {
+  --fg: #282828; /* Darker text */
+  --muted: #555555; /* Muted text for placeholder */
+  --ring: rgba(40, 40, 40, 0.6);
+  --shadow: rgba(255, 255, 255, 0.4); /* Light subtle glow */
+
+  /* Left/top pill geometry for Sechelt's VR area */
+  --vr-top: 9px;
+  --vr-left: 6px;
+  --vr-width: 120px;
+  --vr-height: 40px;
+  --vr-extra-right: 24px;
+  --vr-radius: 6px;
+}
+
+/* Light-on-dark theme just for dark backgrounds (Piplup + Particles + Galaxy) */
+body.theme-piplup {
+  --fg: #d6d6d6;
+  --muted: #e6e6e6;
+  --ring: rgba(69, 68, 68, 0.85);
+  --shadow: #282828;
+}
+/* Placeholder tweak for piplup/particles */
+body.theme-piplup .search::placeholder {
+  color: #a8a7a7;
+  opacity: 0.85;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+}
+
+body, .widget { font-family: 'JetBrains Mono', monospace; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: transparent;
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.45;
+  overflow: hidden;
+}
+
+/* Background */
+#bgWrap {
+  position: fixed; inset: 0; overflow: hidden; z-index: 0;
+  background-position:center; background-size:cover; background-repeat:no-repeat;
+}
+/* Dedicated image layer (for GIFs) */
+#bgImage{
+  position: absolute; inset: 0;
+  background-position: center; background-size: cover; background-repeat: no-repeat;
+  pointer-events: none;
+}
+#bgSite { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Foreground */
+.container {
+  position: relative; z-index: 1; min-height: 100%;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 20px; background: transparent; transition: opacity .18s ease;
+}
+.stack { text-align: center; background: transparent; }
+
+/* Welcome text */
+h1 {
+  font-weight: 537; font-size: clamp(48px, 4vw, 40px); margin: 0 0 10px; letter-spacing: 0.6px;
+  text-shadow: 1px 1px 4px var(--shadow);
+}
+
+/* Search */
+.searchWrap { margin: 4px auto 10px; width: min(800px, 95%); }
+.search {
+  width: 100%; box-sizing: border-box; padding: 8px 0 8px; border: none;
+  border-bottom: 2px solid var(--ring); background: transparent; color: var(--fg);
+  font-size: clamp(18px, 2.2vw, 20px); outline: none; text-align: center;
+}
+.search::placeholder { color: var(--muted); text-shadow: 1px 1px 3px var(--shadow); }
+
+/* Shortcuts (default centered row) */
+.links { display: flex; flex-wrap: wrap; gap: 20px 40px; justify-content: center; margin: 10px 0; }
+.link {
+  display: inline-flex; align-items: center; gap: 12px; padding: 2px 0; color: var(--fg);
+  text-decoration: none; font-size: 26px; font-weight: 500; transition: transform .2s ease;
+  text-shadow: 1px 1px 3px var(--shadow);
+}
+.link:hover { transform: translateY(-1px) scale(1.05); }
+.icon { width: 29px; height: 29px; opacity: 1; filter: drop-shadow(1px 1px 3px var(--shadow)); }
+
+/* Weather */
+.weather {
+  display: inline-flex; align-items: center; gap: 14px; margin-top: 6px; background: transparent; border: none;
+  font-size: 25px; font-weight: 300; text-shadow: 1px 1px 3px var(--shadow);
+}
+.wx-emoji svg { width: 32px; height: 32px; stroke: currentColor; fill: none; filter: drop-shadow(1px 1px 2px var(--shadow)); }
+
+/* === Interactable background controls === */
+#scrim { pointer-events: none; }
+
+/* Left cover for Sechelt's native Enter VR (hidden unless Sechelt) */
+.bg-cover{
+  position: fixed; z-index: 3;
+  top: var(--vr-top); left: var(--vr-left);
+  width: calc(var(--vr-width) + var(--vr-extra-right)); height: var(--vr-height);
+  background: #000; border-radius: var(--vr-radius); box-shadow: none; pointer-events: none;
+  display: none;
+}
+
+.bg-toggle{ position: fixed; z-index: 4; font: 14px/1 'JetBrains Mono', monospace; cursor: pointer; user-select: none; }
+
+/* Interact — default LEFT (Sechelt) */
+.bg-toggle.enter{
+  top: var(--vr-top); left: var(--vr-left);
+  width: var(--vr-width); height: var(--vr-height);
+  padding: 0; display:none; align-items:center; justify-content:center;
+  background: #000; color:#fff; border:none; border-radius: var(--vr-radius);
+}
+.bg-toggle.enter:hover{ background:#0a0a0a; }
+
+/* Interact — RIGHT (Jellyfish & Particles) */
+.bg-toggle.enter.right{
+  left: auto; right: 14px; top: 14px;
+  width: auto; height: auto; padding: 8px 12px; border-radius: 10px;
+}
+
+/* Exit button (right) */
+.bg-toggle.exit{
+  top:14px; right:14px; padding:8px 12px; border:1px solid rgba(0,0,0,.25);
+  background: rgba(255,255,255,.75); color:#282828; border-radius:10px; backdrop-filter: blur(6px);
+  display: none;
+}
+.bg-toggle.exit:hover{ background: rgba(255,255,255,.92); }
+
+/* When background mode is active */
+.bg-interact .container{ pointer-events:none; opacity:0; }
+.bg-interact .bg-toggle{ pointer-events:auto; }
+
+/* ===== Particles layout (scoped ONLY to singing particles) ===== */
+body.layout-particles h1{
+  position: fixed; top: 22px; left: 50%; transform: translateX(-50%);
+  margin: 0;
+  font-size: clamp(22px, 3vw, 32px);
+  white-space: nowrap;
+  letter-spacing: .5px;
+}
+body.layout-particles .links{ display:none; } /* hide center row */
+
+.side-links{
+  position: fixed; top: 50%; transform: translateY(-50%);
+  display:flex; flex-direction:column; gap: 18px; z-index: 2;
+  line-height: 1.1;
+}
+.side-links.left{ left: 28px; align-items: flex-start; }
+.side-links.right{ right: 28px; align-items: flex-end; }
+
+body.layout-particles .side-links .link{
+  font-size: 22px;
+  gap: 10px;
+}
+body.layout-particles .side-links .icon{
+  width: 24px; height: 24px;
+  filter: drop-shadow(1px 1px 2px var(--shadow));
+}
+
+body.layout-particles .weather{
+  position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+  margin: 0;
+}
+
+/* ===== GALAXY layout (scoped ONLY to galaxy background) ===== */
+body.layout-galaxy h1{
+  position: fixed; top: 22px; left: 50%; transform: translateX(-50%);
+  margin: 0; white-space: nowrap; letter-spacing: .5px;
+  font-size: clamp(22px, 3vw, 30px);
+}
+body.layout-galaxy .searchWrap{ display:none !important; }
+/* hide the default link row; we'll use orbiters instead */
+body.layout-galaxy .links{ display:none !important; }
+
+/* Weather bottom center */
+body.layout-galaxy .weather{
+  position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+  margin: 0;
+}
+
+/* Orbit layer centered on viewport */
+.gx-orbits{
+  position: fixed; left: 50%; top: 50%; width: 0; height: 0; z-index: 2;
+  pointer-events: none; /* the children handle events */
+}
+.gx-orbits .link{
+  position: absolute; left: 0; top: 0;
+  transform-origin: 0 0;
+  pointer-events: auto; /* clickable */
+  font-size: 22px;
+  gap: 10px;
+}
+.gx-orbits .icon{ width: 24px; height: 24px; filter: drop-shadow(1px 1px 2px var(--shadow)); }
+
+/* Keep label upright while orbiting */
+@keyframes gx-orbit {
+  from { transform: rotate(var(--start, 0deg)) translate(var(--r, 180px)) rotate(calc(-1 * var(--start, 0deg))); }
+  to   { transform: rotate(calc(var(--start, 0deg) + 360deg)) translate(var(--r, 180px)) rotate(calc(-1 * (var(--start, 0deg) + 360deg))); }
+}
+body.layout-galaxy .gx-orbits .link{
+  animation: gx-orbit var(--dur, 36s) linear infinite;
+}
+body.layout-galaxy .gx-orbits .link:hover{ animation-play-state: paused; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  body.layout-particles .side-links,
+  body.layout-particles .side-links .link,
+  body.layout-galaxy .gx-orbits .link{ animation: none !important; }
+}
+
+*, *::before, *::after { -webkit-user-drag: none; }

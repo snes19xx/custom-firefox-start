@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cover (only for Sechelt) + Interact + Exit -->
+    <div class="bg-cover" aria-hidden="true"></div>
+    <button id="bg-enter" class="bg-toggle enter" title="Interact with background (`)">Interact</button>
+    <button id="bg-exit" class="bg-toggle exit" title="Exit (Esc)">Exit</button>
+
+    <!-- BACKGROUND -->
+    <div id="bgWrap">
+        <div id="bgImage" aria-hidden="true"></div> <!-- image/GIF layer -->
+        <iframe id="bgSite" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+    </div>
+
+    <!-- FOREGROUND CONTENT -->
+    <main class="container">
+        <div class="stack">
+            <h1 id="welcome">Welcome back to Firefox snes!</h1>
+
+            <div class="searchWrap">
+                <input id="search" class="search" type="search" placeholder="Type to search" autocomplete="off" />
+            </div>
+
+            <nav class="links" id="links"></nav>
+
+            <div class="weather" id="weather" title="Current weather">
+                <span class="wx-emoji" id="wx-emoji"></span>
+                <span class="wx-city" id="wx-city">Downtown Toronto</span>
+                <span class="wx-temp" id="wx-temp"></span>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/background.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
