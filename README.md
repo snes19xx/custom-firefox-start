@@ -3,6 +3,14 @@
 This started as a random project when I got bored. This is a custom Firefox new tab page with dynamic backgrounds, weather updates, quick shortcuts, and different layouts. 
 It turns the blank new tab into something a bit more useful (and nicer to look at).
 
+Screenshots:
+<table>
+  <tr>
+    <td><img src="ss1.png" alt="Screenshot 1" width="400"></td>
+    <td><img src="ss2.png" alt="Screenshot 2" width="400"></td>
+  </tr>
+</table>
+
 ## Background Credits
 Please check [thorium.rocks](https://thorium.rocks)
 
