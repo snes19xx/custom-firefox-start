@@ -17,7 +17,7 @@ Please check [thorium.rocks](https://thorium.rocks)
 ### External Background Sources
 
 - **[Sechelt VR Experience](https://thorium.rocks/media/sechelt/)**  
-  An immersive VR environment by Thorium Rocks.
+  An immersive VR environment by Mozilla.
 
 - **[WebGL Jellyfish](https://thorium.rocks/media/webgl_jellyfish/)**  
   Interactive 3D jellyfish simulation by Thorium Rocks.
@@ -52,7 +52,7 @@ Please check [thorium.rocks](https://thorium.rocks)
 1. Place the project folder in a permanent location.  
 2. Configure Firefox to use the local HTML file as your new tab page.  
 3. Note: Some backgrounds require an internet connection.
-> Firefox removed the ability to set the new tab page via `about:config` (specifically the `browser.newtab.url` preference) starting with version 41.  
+> Firefox removed the ability to set the new tab page via `about:config` (specifically `browser.newtab.url`) starting with version 41 (apparently).  
 > See [Mozilla Support](https://support.mozilla.org/en-US/questions/1266777) for more details.
 > So please look up how to set it up with mozilla.cfg
 
@@ -66,7 +66,7 @@ const SHORTCUTS = [
   // Add more shortcuts here
 ];
 ```
-Available Icons:
+Icons:
 hat (graduation cap), bar (chart bar), yt (YouTube), term (terminal), mail (envelope)
 
 ### Adding Backgrounds
