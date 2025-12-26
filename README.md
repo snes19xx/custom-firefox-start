@@ -1,7 +1,7 @@
 # Firefox Custom New Tab
 
 This started as a random project when I got bored. This is a custom Firefox new tab page with dynamic backgrounds, weather updates, quick shortcuts, and different layouts. 
-It turns the blank new tab into something a bit more useful (and nicer to look at).
+It turns the new tab into a bit more useful (and nicer to look at).
 
 Screenshots:
 <table>
